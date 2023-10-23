@@ -10,8 +10,11 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     Vector2 input;
 
+    private bool isMoving;
     private bool canMove = true;
     private GameManager gameManager;
+
+    public bool IsMoving { get { return isMoving; } }
 
 
     private void Start()
@@ -30,6 +33,8 @@ public class TopDownMovement : MonoBehaviour
 
     private void Update()
     {
+        isMoving = input != Vector2.zero;
+
         if (!canMove) return;
         GetInput();
     }

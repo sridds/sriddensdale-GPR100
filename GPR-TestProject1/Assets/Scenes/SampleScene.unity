@@ -1930,8 +1930,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectablePrefab: {fileID: 8378686705306473452, guid: 741bd0c26d0a444e4b43a1356ba1e18c, type: 3}
-  range: {x: 7, y: 7}
-  spawnAmount: 8
+  range: {x: 10, y: 10}
+  spawnAmount: 15
 --- !u!4 &1753845383
 Transform:
   m_ObjectHideFlags: 0
@@ -2218,6 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ef1df74e47240bd97aff207c7947d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 2038636727}
   animator: {fileID: 2038636729}
 --- !u!95 &2038636729
 Animator:
