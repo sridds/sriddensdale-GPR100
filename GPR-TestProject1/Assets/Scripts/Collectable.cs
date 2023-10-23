@@ -8,6 +8,9 @@ public class Collectable : MonoBehaviour
     [SerializeField] private int pointValue = 50;
     [SerializeField] private float smoothTime = 0.2f;
 
+    [SerializeField] private AudioClip collectClip;
+    [SerializeField] private AudioSource source;
+
     private Vector2 startPos;
     private Vector2 targetPos;
     private Vector2 velocity;
@@ -40,6 +43,7 @@ public class Collectable : MonoBehaviour
             startPos.y + Random.Range(-moveRange.y, moveRange.y));
 
         OnTouchEvent?.Invoke(pointValue);
+        source.PlayOneShot(collectClip);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -50,6 +54,7 @@ public class Collectable : MonoBehaviour
         if (collision.GetComponent<TopDownMovement>())
         {
             Touch();
+            canCollect = false;
         }
     }
 }
