@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11ec94e3019f486793ed83722b01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 5
+  startTime: 60
 --- !u!4 &585563552
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Time: 0.8
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -1584,6 +1584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRange: {x: 5, y: 5}
   pointValue: 50
+  smoothTime: 0.1
 --- !u!4 &1428802802
 Transform:
   m_ObjectHideFlags: 0
