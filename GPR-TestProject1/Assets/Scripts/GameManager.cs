@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,16 +9,22 @@ public class GameManager : MonoBehaviour
 
     private float timer;
     private int points;
+    private bool isGameOver;
 
     // accessor fields
     public float TimeRemaining { get { return timer; } }
     public int Points { get { return points; } }
 
+    public delegate void GameOver();
+    public GameOver OnGameOver;
+
+    private Collectable collectable;
+
     private void Start()
     {
         timer = startTime;
 
-        Collectable collectable = FindObjectOfType<Collectable>();
+        collectable = FindObjectOfType<Collectable>();
 
         // check if the collectable exists
         if (collectable != null) {
@@ -27,10 +34,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // iterate timer
+    private void OnDisable()
+    {
+        collectable.OnTouchEvent -= AddPoints;
+    }
+
     private void Update()
     {
-        timer -= Time.deltaTime;
+        // iterate timer 
+        if(timer > 0) timer -= Time.deltaTime;
+
+        // Invoke game over
+        if(timer <= 0 && !isGameOver) {
+            isGameOver = true;
+            OnGameOver?.Invoke();
+        }
+
+        // Restart scene when game over
+        if (isGameOver && Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void AddPoints(int pointValue) => points += pointValue;

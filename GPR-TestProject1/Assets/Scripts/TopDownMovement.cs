@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TopDownMovement : MonoBehaviour
@@ -9,13 +10,27 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     Vector2 input;
 
-    private void Awake()
+    private bool canMove = true;
+    private GameManager gameManager;
+
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.OnGameOver += StopMovement;
     }
+
+    private void OnDisable()
+    {
+        gameManager.OnGameOver -= StopMovement;
+    }
+
     private void Update()
     {
+        if (!canMove) return;
         GetInput();
     }
 
@@ -31,4 +46,6 @@ public class TopDownMovement : MonoBehaviour
 
         input.Normalize();
     }
+
+    private void StopMovement() => canMove = false;
 }

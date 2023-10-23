@@ -11,9 +11,19 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI pointsText;
 
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private TextMeshProUGUI finalPoints;
+
     private void Start()
     {
         manager = FindObjectOfType<GameManager>();
+
+        manager.OnGameOver += ShowGameOver;
+    }
+
+    private void OnDisable()
+    {
+        manager.OnGameOver -= ShowGameOver;
     }
 
     private void Update()
@@ -23,5 +33,11 @@ public class UIHandler : MonoBehaviour
 
         timerText.text = $"Time Remaining: {(int)manager.TimeRemaining}";
         pointsText.text = $"Points: {manager.Points}";
+    }
+
+    private void ShowGameOver()
+    {
+        gameOverScreen.SetActive(true);
+        finalPoints.text = $"Final Points: {manager.Points}";
     }
 }
