@@ -47,5 +47,9 @@ public class TopDownMovement : MonoBehaviour
         input.Normalize();
     }
 
-    private void StopMovement() => canMove = false;
+    private void StopMovement()
+    {
+        canMove = false;
+        input = Vector2.zero;
+    }
 }
