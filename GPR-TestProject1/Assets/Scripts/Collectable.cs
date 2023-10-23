@@ -45,6 +45,9 @@ public class Collectable : MonoBehaviour
         animator.SetTrigger("Collect");
 
         OnTouchEvent?.Invoke(pointValue);
+
+        // Randomize pitch for fun
+        source.pitch = Random.Range(0.94f, 1.08f);
         source.PlayOneShot(collectClip);
     }
 
