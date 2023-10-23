@@ -8,10 +8,15 @@ public class Collectable : MonoBehaviour
     [SerializeField] private int pointValue = 50;
     [SerializeField] private float smoothTime = 0.2f;
 
+    [Header("Audio")]
     [SerializeField] private AudioClip collectClip;
     [SerializeField] private AudioSource source;
 
+    [Header("Animation")]
     [SerializeField] private Animator animator;
+
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem collectParticle;
 
     private Vector2 startPos;
     private Vector2 targetPos;
@@ -49,6 +54,8 @@ public class Collectable : MonoBehaviour
         // Randomize pitch for fun
         source.pitch = Random.Range(0.94f, 1.08f);
         source.PlayOneShot(collectClip);
+
+        Instantiate(collectParticle, transform.position, Quaternion.identity);
     }
 
     void SetNewPosition()

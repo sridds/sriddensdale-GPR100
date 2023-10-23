@@ -55,6 +55,7 @@ MonoBehaviour:
   collectClip: {fileID: 8300000, guid: 29035605b865b45aba3bbe6516c9f98b, type: 3}
   source: {fileID: 3708363630631960418}
   animator: {fileID: 1403423446244552506}
+  collectParticle: {fileID: 8628609751832178946, guid: 06049b7bc66504142913c3c0b24f2cf4, type: 3}
 --- !u!61 &6109235728919839638
 BoxCollider2D:
   m_ObjectHideFlags: 0
