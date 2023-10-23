@@ -5,10 +5,11 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     [SerializeField] private Vector2 moveRange;
+    [SerializeField] private int pointValue = 50;
 
     private Vector2 startPos;
 
-    public delegate void OnTouch();
+    public delegate void OnTouch(int points);
     public OnTouch OnTouchEvent;
 
     private void Start()
@@ -23,7 +24,7 @@ public class Collectable : MonoBehaviour
             startPos.x + Random.Range(-moveRange.x, moveRange.x),
             startPos.y + Random.Range(-moveRange.y, moveRange.y));
 
-        OnTouchEvent?.Invoke();
+        OnTouchEvent?.Invoke(pointValue);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
