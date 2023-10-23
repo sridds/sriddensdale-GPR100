@@ -11,6 +11,8 @@ public class Collectable : MonoBehaviour
     [SerializeField] private AudioClip collectClip;
     [SerializeField] private AudioSource source;
 
+    [SerializeField] private Animator animator;
+
     private Vector2 startPos;
     private Vector2 targetPos;
     private Vector2 velocity;
@@ -38,12 +40,29 @@ public class Collectable : MonoBehaviour
     void Touch()
     {
         // Randomize position
-        targetPos = new Vector2(
-            startPos.x + Random.Range(-moveRange.x, moveRange.x),
-            startPos.y + Random.Range(-moveRange.y, moveRange.y));
+        SetNewPosition();
+
+        animator.SetTrigger("Collect");
 
         OnTouchEvent?.Invoke(pointValue);
         source.PlayOneShot(collectClip);
+    }
+
+    void SetNewPosition()
+    {
+        bool isValid = false;
+        do
+        {
+            Vector2 newPos = new Vector2(
+            startPos.x + Random.Range(-moveRange.x, moveRange.x),
+            startPos.y + Random.Range(-moveRange.y, moveRange.y));
+
+            if(Vector2.Distance(newPos, transform.position) > 4.0f) {
+                isValid = true;
+
+                targetPos = newPos;
+            }
+        } while (!isValid);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
