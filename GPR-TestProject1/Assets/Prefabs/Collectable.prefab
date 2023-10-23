@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRange: {x: 9, y: 9}
   pointValue: 50
-  smoothTime: 0.1
+  smoothTime: 0.2
   collectClip: {fileID: 8300000, guid: 29035605b865b45aba3bbe6516c9f98b, type: 3}
   source: {fileID: 3708363630631960418}
   animator: {fileID: 1403423446244552506}

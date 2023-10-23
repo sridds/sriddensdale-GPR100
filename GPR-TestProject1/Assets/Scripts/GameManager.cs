@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public int Points { get { return points; } }
 
     public delegate void GameOver();
+    public delegate void PointUpdate();
+    public PointUpdate OnPointUpdate;
     public GameOver OnGameOver;
 
     private void Start()
@@ -64,5 +66,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void AddPoints(int pointValue) => points += pointValue;
+    private void AddPoints(int pointValue)
+    {
+        points += pointValue;
+        OnPointUpdate?.Invoke();
+    }
 }
