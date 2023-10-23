@@ -32,6 +32,11 @@ public class UIHandler : MonoBehaviour
         if (manager == null) return;
 
         timerText.text = $"Time Remaining: {(int)manager.TimeRemaining}";
+
+        // change the text to red if the time is low;
+        if ((int)manager.TimeRemaining <= 10)
+            timerText.color = Color.red;
+
         pointsText.text = $"Points: {manager.Points}";
     }
 
