@@ -939,6 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 60
+  sizeIncreaseFactor: 0.025
 --- !u!4 &585563552
 Transform:
   m_ObjectHideFlags: 0

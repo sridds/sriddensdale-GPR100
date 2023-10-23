@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float startTime = 60; // in seconds
+    [SerializeField] private float sizeIncreaseFactor = 0.01f;
 
     private float timer;
     private int points;
@@ -70,5 +71,16 @@ public class GameManager : MonoBehaviour
     {
         points += pointValue;
         OnPointUpdate?.Invoke();
+
+        IncreasePlayerSize();
+    }
+
+    private void IncreasePlayerSize()
+    {
+        // testing this out for fun
+
+        TopDownMovement player = FindObjectOfType<TopDownMovement>();
+
+        player.transform.localScale = new Vector3(player.transform.localScale.x + sizeIncreaseFactor, player.transform.localScale.y + sizeIncreaseFactor, player.transform.localScale.z);
     }
 }
