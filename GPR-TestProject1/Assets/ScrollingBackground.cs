@@ -11,6 +11,11 @@ public class ScrollingBackground : MonoBehaviour
     private void Update()
     {
         image.material.mainTextureOffset = new Vector2(image.material.mainTextureOffset.x + scrollSpeed.x * Time.deltaTime, image.material.mainTextureOffset.y + scrollSpeed.y * Time.deltaTime);
+    }
 
+    private void OnDisable()
+    {
+        // reset offset
+        image.material.mainTextureOffset = Vector2.zero;
     }
 }

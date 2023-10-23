@@ -18,25 +18,33 @@ public class GameManager : MonoBehaviour
     public delegate void GameOver();
     public GameOver OnGameOver;
 
-    private Collectable collectable;
-
     private void Start()
     {
         timer = startTime;
+    }
 
-        collectable = FindObjectOfType<Collectable>();
-
-        // check if the collectable exists
-        if (collectable != null) {
-            // subscribe to collectable event to reduce coupling
-            Debug.Log("Subscribed to collectable event");
-            collectable.OnTouchEvent += AddPoints;
+    public void RegisterCollectables()
+    {
+        foreach(Collectable c in FindObjectsOfType<Collectable>())
+        {
+            if (c != null)
+            {
+                // subscribe to collectable event to reduce coupling
+                Debug.Log("Subscribed to collectable event");
+                c.OnTouchEvent += AddPoints;
+            }
         }
     }
 
     private void OnDisable()
     {
-        collectable.OnTouchEvent -= AddPoints;
+        foreach (Collectable c in FindObjectsOfType<Collectable>())
+        {
+            if (c != null)
+            {
+                c.OnTouchEvent -= AddPoints;
+            }
+        }
     }
 
     private void Update()

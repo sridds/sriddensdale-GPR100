@@ -24,7 +24,7 @@ public class Collectable : MonoBehaviour
 
     private void Start()
     {
-        startPos = transform.position;
+        startPos = Vector2.zero;
         targetPos = transform.position;
     }
 
